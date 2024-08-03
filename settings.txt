@@ -9,46 +9,3513 @@ Your final settings.txt will look something like this when you are finished:
 
 Wallpaper 1:
 
-//your parameter variables go here!
-let rect_width  = 20;
-let rect_height = 20;
-let paramter1 = 10;
-let paramter2 = true;
-let paramter3 = 50; 
-let paramter4 = 0; 
-let paramter5 = 60;
+let rectone1X = 0; //controls rect shape 1/8 tile
+let rectone1Y = 0;
+let rectone2X = 0; //controls rect shape 3/8 tile
+let rectone2Y = 250; 
+let rectone3X = 0; //controls rect shape 5/8 tile
+let rectone3Y = 500; 
+let rectone4X = 0; //controls rect shape 7/8 tile
+let rectone4Y = 750; 
+
+let recttwo1X = 250; //controls rect shape 2/8 tile
+let recttwo1Y = 0;
+let recttwo2X = 250; //controls rect shape 4/8 tile
+let recttwo2Y = 250; 
+let recttwo3X = 250; //controls rect shape 6/8 tile
+let recttwo3Y = 500; 
+let recttwo4X = 250; //controls rect shape 8/8 tile
+let recttwo4Y = 750; 
+
+let arcone1X = 500; //controle arc shape 2/8 tile
+let arcone1Y = 250;
+let arcone2X = 250; //controle arc shape 3/8 tile
+let arcone2Y = 500;
+let arcone3X = 500; //controle arc shape 6/8 tile
+let arcone3Y = 750;
+let arcone4X = 250; //controle arc shape 7/8 tile
+let arcone4Y = 1000;
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(GRID_WALLPAPER);
-  pWallpaper.resolution(NINE_LANDSCAPE);
+  pWallpaper.resolution(NINE_PORTRAIT);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
-  pWallpaper.grid_settings.row_offset  = 50;
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(recttwo1X, recttwo1Y)
+  DrawRectTwo(recttwo2X, recttwo2Y)
+  DrawRectTwo(recttwo3X, recttwo3Y)
+  DrawRectTwo(recttwo4X, recttwo4Y)
+
+  DrawArcOne(arcone1X, arcone1Y)
+  DrawArcOne(arcone2X, arcone2Y)
+  DrawArcOne(arcone3X, arcone3Y)
+  DrawArcOne(arcone4X, arcone4Y)
+  
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [97,6,6],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [97,6,6],   // 5th layer (from outside in)
+      [234,106,60],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [212,110,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [105,134,142],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [105,134,142],   // 5th layer (from outside in)
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [234,106,60]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [0,69,137],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [137,196,255], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [212,110,29],    // Default color for 5th (use this if x < 0)
+    [97,6,6], // Default color for 4th layer
+    [0,0,0],   // Default color for 3rd layer
+    [234,106,60],   // Default color for 2nd layer
+    [97,6,6]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [97,6,6],   // 5th layer (from outside in)
+      [212,110,29],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [212,110,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [179,221,234]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [212,110,29],   // 5th layer 
+      [97,6,6],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [234,106,60], // 2nd layer
+      [97,6,6]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
 }
 
 /////////////////////////////////
 
 Wallpaper 2:
 
-//your parameter variables go here!
-let rect_width  = 10;
-let rect_height = 10;
-let paramter1 = 20;
-let paramter2 = false;
-let paramter3 = 50; 
-let paramter4 = 80; 
-let paramter5 = 30;
+let rectone1X = 0; //controle rect shape 1/8 tile
+let rectone1Y = 0;
+let rectone2X = 0; //controle rect shape 3/8 tile
+let rectone2Y = 250; 
+let rectone3X = 0; //controle rect shape 5/8 tile
+let rectone3Y = 500; 
+let rectone4X = 0; //controle rect shape 7/8 tile
+let rectone4Y = 750; 
+
+let recttwo1X = 250; //controle rect shape 2/8 tile
+let recttwo1Y = 0;
+let recttwo2X = 250; //controle rect shape 4/8 tile
+let recttwo2Y = 250; 
+let recttwo3X = 250; //controle rect shape 6/8 tile
+let recttwo3Y = 500; 
+let recttwo4X = 250; //controle rect shape 8/8 tile
+let recttwo4Y = 750; 
+
+let arcone1X = 250; //controle arc shape 1/8 tile
+let arcone1Y = 250;
+let arcone2X = 500; //controle arc shape 3/8 tile
+let arcone2Y = 500;
+let arcone3X = 250; //controle arc shape 6/8 tile
+let arcone3Y = 750;
+let arcone4X = 500; //controle arc shape 8/8 tile
+let arcone4Y = 1000;
+
+let arctwo1X = 250; //controle arc shape 2/8 tile
+let arctwo1Y = 250;
+let arctwo2X = 0; //controle arc shape 3/8 tile
+let arctwo2Y = 500;
+let arctwo3X = 250; //controle arc shape 6/8 tile
+let arctwo3Y = 750;
+let arctwo4X = 0; //controls arc shape 7/8 tile
+let arctwo4Y = 1000;
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(GRID_WALLPAPER);
-  pWallpaper.resolution(NINE_LANDSCAPE);
+  pWallpaper.resolution(NINE_PORTRAIT);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
-  pWallpaper.grid_settings.row_offset  = 0;
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
 }
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(recttwo1X, recttwo1Y)
+  DrawRectTwo(recttwo2X, recttwo2Y)
+  DrawRectTwo(recttwo3X, recttwo3Y)
+  DrawRectTwo(recttwo4X, recttwo4Y)
+
+  DrawArcOne(arcone1X, arcone1Y)
+  DrawArcOne(arcone2X, arcone2Y)
+  DrawArcOne(arcone3X, arcone3Y)
+  DrawArcOne(arcone4X, arcone4Y)
+  
+  DrawArcTwo(arctwo1X, arctwo1Y)
+  DrawArcTwo(arctwo2X, arctwo2Y)
+  DrawArcTwo(arctwo3X, arctwo3Y)
+  DrawArcTwo(arctwo4X, arctwo4Y)
+
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [105,134,142],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [105,134,142],   // 5th layer (from outside in)
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [154,194,206], // 2nd layer
+      [179,221,234]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [105,134,142],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [105,134,142],   // 5th layer (from outside in)
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [154,194,206], // 2nd layer
+      [179,221,234]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [0,69,137],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [137,196,255], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [179,221,234],    // Default color for 5th (use this if x < 0)
+    [154,194,206], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [86,114,123],   // Default color for 2nd layer
+    [105,134,142]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [179,221,234],   // 5th layer 
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [86,114,123], // 2nd layer
+      [179,221,234]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [179,221,234]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [105,134,142],   // 5th layer 
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [154,194,206], // 2nd layer
+      [179,221,234]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+Wallpaper 3:
+
+let rectone1X = 0; 
+let rectone1Y = 0;
+let rectone2X = 0; 
+let rectone2Y = 250; 
+let rectone3X = 0; 
+let rectone3Y = 500; 
+let rectone4X = 0; 
+let rectone4Y = 750; 
+
+let recttwo1X = 250; 
+let recttwo1Y = 0;
+let recttwo2X = 250; 
+let recttwo2Y = 250; 
+let recttwo3X = 250; 
+let recttwo3Y = 500; 
+let recttwo4X = 250; 
+let recttwo4Y = 750; 
+
+let arcone1X = 250; 
+let arcone1Y = 250;
+let arcone2X = 250; 
+let arcone2Y = 750;
+
+let arctwo1X = 250; 
+let arctwo1Y = 250;
+let arctwo2X = 250; 
+let arctwo2Y = 750;
+
+let arcthree1X = 500; 
+let arcthree1Y = 250;
+let arcthree2X = 500; 
+let arcthree2Y = 750;
+
+let arcfour1X = 0; 
+let arcfour1Y = 250;
+let arcfour2X = 0; 
+let arcfour2Y = 750;
+
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(recttwo1X, recttwo1Y)
+  DrawRectTwo(recttwo2X, recttwo2Y)
+  DrawRectTwo(recttwo3X, recttwo3Y)
+  DrawRectTwo(recttwo4X, recttwo4Y)
+
+  DrawArcOne(arcone1X, arcone1Y)
+  DrawArcOne(arcone2X, arcone2Y)
+  
+  DrawArcTwo(arctwo1X, arctwo1Y)
+  DrawArcTwo(arctwo2X, arctwo2Y)
+
+  DrawArcThree(arcthree1X, arcthree1Y)
+  DrawArcThree(arcthree2X, arcthree2Y)
+
+  DrawArcFour(arcfour1X, arcfour1Y)
+  DrawArcFour(arcfour2X, arcfour2Y)
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [137,196,255], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [137,196,255], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [0,69,137],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [137,196,255], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [0,30,59],    // Default color for 5th (use this if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [0,30,59],   // 5th layer 
+      [0,69,137],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [137,196,255], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [211,211,209]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [0,30,59],   // 5th layer 
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+/////////////////////////////////
+
+Wallpaper 4:
+
+let rectone1X = 0; 
+let rectone1Y = 0;
+let rectone2X = 0; 
+let rectone2Y = 250; 
+let rectone3X = 0; 
+let rectone3Y = 500; 
+let rectone4X = 0; 
+let rectone4Y = 750; 
+
+let recttwo1X = 250; 
+let recttwo1Y = 0;
+let recttwo2X = 250; 
+let recttwo2Y = 250; 
+let recttwo3X = 250; 
+let recttwo3Y = 500; 
+let recttwo4X = 250; 
+let recttwo4Y = 750; 
+
+let arcone1X = 250; 
+let arcone1Y = 250;
+
+let arctwo1X = 250; 
+let arctwo1Y = 250;
+
+let arcthree1X = 250; 
+let arcthree1Y = 750;
+
+let arcfour1X = 250; 
+let arcfour1Y = 750;
+
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(recttwo1X, recttwo1Y)
+  DrawRectTwo(recttwo2X, recttwo2Y)
+  DrawRectTwo(recttwo3X, recttwo3Y)
+  DrawRectTwo(recttwo4X, recttwo4Y)
+
+  DrawArcOne(arcone1X, arcone1Y)
+  
+  DrawArcTwo(arctwo1X, arctwo1Y)
+
+  DrawArcThree(arcthree1X, arcthree1Y)
+
+  DrawArcFour(arcfour1X, arcfour1Y)
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [51,29,29],    // Default color for 5th (layer use if x < 0)
+    [225,180,134], // Default color for 4th layer
+    [159,52,52],   // Default color for 3rd layer
+    [225,180,134],   // Default color for 2nd layer
+    [236,224,209]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [219,193,172],   // 5th layer (from outside in)
+      [56,34,15],   //  4th layer
+      [150,114,89],   //  3rd layer
+      [99,72,50], // 2nd layer
+      [236,224,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [162,166,164],    // Default color for 5th (use this if x < 0)
+    [98,105,105], // Default color for 4th layer
+    [54,55,54],   // Default color for 3rd layer
+    [162,166,164],   // Default color for 2nd layer
+    [202,204,199]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [219,193,172],   // 5th layer (from outside in)
+      [56,34,15],   //  4th layer
+      [150,114,89],   //  3rd layer
+      [99,72,50], // 2nd layer
+      [236,224,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [219,193,172],    // Default color for 5th (use this if x < 0)
+    [56,34,15], // Default color for 4th layer
+    [150,114,89],   // Default color for 3rd layer
+    [99,72,50],   // Default color for 2nd layer
+    [236,224,209]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [219,193,172],   // 5th layer (from outside in)
+      [56,34,15],   //  4th layer
+      [150,114,89],   //  3rd layer
+      [162,166,164], // 2nd layer
+      [236,224,209]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [236,224,209]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [219,193,172],   // 5th layer (from outside in)
+      [56,34,15],   //  4th layer
+      [150,114,89],   //  3rd layer
+      [99,72,50], // 2nd layer
+      [236,224,209]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [236,224,209],    // Default color for 5th (use this if x < 0)
+    [56,34,15], // Default color for 4th layer
+    [150,114,89],   // Default color for 3rd layer
+    [99,72,50],   // Default color for 2nd layer
+    [219,193,172]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [211,211,209],   // 5th layer 
+      [202,204,199],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [98,105,105], // 2nd layer
+      [211,211,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [211,211,209]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [219,193,172],   // 5th layer 
+      [99,72,50],   //  4th layer
+      [150,114,89],   //  3rd layer
+      [56,34,15], // 2nd layer
+      [236,224,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+
+/////////////////////////////////
+
+Wallpaper 5: ////////
+
+let rectone1X = 0; 
+let rectone1Y = 0;
+let rectone2X = 0; 
+let rectone2Y = 250; 
+let rectone3X = 0; 
+let rectone3Y = 500; 
+let rectone4X = 0; 
+let rectone4Y = 750; 
+
+let recttwo1X = 250; 
+let recttwo1Y = 0;
+let recttwo2X = 250; 
+let recttwo2Y = 250; 
+let recttwo3X = 250; 
+let recttwo3Y = 500; 
+let recttwo4X = 250; 
+let recttwo4Y = 750; 
+
+let arctwo1X = 250; 
+let arctwo1Y = 250;
+let arctwo2X = 0; 
+let arctwo2Y = 750;
+
+let arcthree1X = 250; 
+let arcthree1Y = 250;
+let arcthree2X = 500; 
+let arcthree2Y = 750;
+
+
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(recttwo1X, recttwo1Y)
+  DrawRectTwo(recttwo2X, recttwo2Y)
+  DrawRectTwo(recttwo3X, recttwo3Y)
+  DrawRectTwo(recttwo4X, recttwo4Y)
+
+  DrawArcTwo(arctwo1X, arctwo1Y)
+  DrawArcTwo(arctwo2X, arctwo2Y)
+  
+  DrawArcThree(arcthree1X, arcthree1Y)
+  DrawArcThree(arcthree2X, arcthree2Y)
+  
+
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [51,29,29],    // Default color for 5th (layer use if x < 0)
+    [225,180,134], // Default color for 4th layer
+    [159,52,52],   // Default color for 3rd layer
+    [225,180,134],   // Default color for 2nd layer
+    [51,29,29]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [51,29,29],   // 5th layer (from outside in)
+      [225,180,134],   //  4th layer
+      [159,52,52],   //  3rd layer
+      [225,180,134], // 2nd layer
+      [51,29,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [162,166,164],    // Default color for 5th (use this if x < 0)
+    [98,105,105], // Default color for 4th layer
+    [54,55,54],   // Default color for 3rd layer
+    [162,166,164],   // Default color for 2nd layer
+    [202,204,199]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [162,166,164],   // 5th layer (from outside in)
+      [98,105,105],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [162,166,164], // 2nd layer
+      [202,204,199]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [162,166,164],    // Default color for 5th (use this if x < 0)
+    [98,105,105], // Default color for 4th layer
+    [54,55,54],   // Default color for 3rd layer
+    [162,166,164],   // Default color for 2nd layer
+    [202,204,199]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [162,166,164],   // 5th layer (from outside in)
+      [98,105,105],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [162,166,164], // 2nd layer
+      [202,204,199]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [162,166,164],   // 5th layer (from outside in)
+      [98,105,105],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [162,166,164], // 2nd layer
+      [202,204,199]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+      [211,211,209],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [211,211,209]  // Default color for 1st
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [211,211,209],   // 5th layer 
+      [202,204,199],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [98,105,105], // 2nd layer
+      [211,211,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [211,211,209],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [211,211,209]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [211,211,209],   // 5th layer 
+      [202,204,199],   //  4th layer
+      [54,55,54],   //  3rd layer
+      [98,105,105], // 2nd layer
+      [211,211,209]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+/////////////////////////////////
+
+Wallpaper 6:
+
+let rectone1X = 0; 
+let rectone1Y = 0;
+let rectone2X = 250; 
+let rectone2Y = 250; 
+let rectone3X = 0; 
+let rectone3Y = 500; 
+let rectone4X = 250; 
+let rectone4Y = 750; 
+
+let rectthree1X = 250; 
+let rectthree1Y = 0;
+let rectthree2X = 0; 
+let rectthree2Y = 250;
+let rectthree3X = 250; 
+let rectthree3Y = 500;
+let rectthree4X = 0; 
+let rectthree4Y = 750;
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectThree(rectthree1X, rectthree1Y)
+  DrawRectThree(rectthree2X, rectthree2Y)
+  DrawRectThree(rectthree3X, rectthree3Y)
+  DrawRectThree(rectthree4X, rectthree4Y)
+  
+  
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [97,6,6],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [97,6,6],   // 5th layer (from outside in)
+      [234,106,60],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [212,110,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [105,134,142],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [105,134,142],   // 5th layer (from outside in)
+      [86,114,123],   //  4th layer
+      [48,65,70],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [234,106,60]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [0,69,137],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [0,69,137],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [137,196,255], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [247,10,10],    // Default color for 5th (use this if x < 0)
+    [163,6,6], // Default color for 4th layer
+    [112,16,16],   // Default color for 3rd layer
+    [143,3,3],   // Default color for 2nd layer
+    [247,10,10]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [247,10,10],   // 5th layer (from outside in)
+      [163,6,6],   //  4th layer
+      [112,16,16],   //  3rd layer
+      [143,3,3], // 2nd layer
+      [247,10,10]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [179,221,234]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [212,110,29],   // 5th layer 
+      [97,6,6],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [234,106,60], // 2nd layer
+      [97,6,6]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [247,10,10],    // Default color for 5th 
+    [163,6,6], // Default color for 4th layer
+    [112,16,16],   // Default color for 3rd layer
+    [143,3,3],   // Default color for 2nd layer
+    [247,10,10]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [247,10,10],   // 5th layer 
+      [163,6,6],   //  4th layer
+      [112,16,16],   //  3rd layer
+      [143,3,3], // 2nd layer
+      [247,10,10]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+/////////////////////////////////
+
+Wallpaper 7:
+
+//your parameter variables go here!
+
+let rectone1X = 0; 
+let rectone1Y = 0;
+let rectone2X = 250; 
+let rectone2Y = 250; 
+let rectone3X = 0; 
+let rectone3Y = 500; 
+let rectone4X = 250; 
+let rectone4Y = 750; 
+
+let rectthree1X = 250; 
+let rectthree1Y = 0;
+let rectthree2X = 0; 
+let rectthree2Y = 250;
+let rectthree3X = 250; 
+let rectthree3Y = 500;
+let rectthree4X = 0; 
+let rectthree4Y = 750;
+
+let arctwo1X = 250; 
+let arctwo1Y = 250;
+let arctwo2X = 0; 
+let arctwo2Y = 500;
+let arctwo3X = 250; 
+let arctwo3Y = 750;
+let arctwo4X = 0; 
+let arctwo4Y = 1000;
+
+let arcthree1X = 250; 
+let arcthree1Y = 0;
+let arcthree2X = 500; 
+let arcthree2Y = 250;
+let arcthree3X = 250; 
+let arcthree3Y = 500;
+let arcthree4X = 500; 
+let arcthree4Y = 750;
+
+
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // Don't change - radians for arc shape
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectThree(rectthree1X, rectthree1Y)
+  DrawRectThree(rectthree2X, rectthree2Y)
+  DrawRectThree(rectthree3X, rectthree3Y)
+  DrawRectThree(rectthree4X, rectthree4Y)
+
+  DrawArcTwo(arctwo1X, arctwo1Y)
+  DrawArcTwo(arctwo2X, arctwo2Y)
+  DrawArcTwo(arctwo3X, arctwo3Y)
+  DrawArcTwo(arctwo4X, arctwo4Y)
+
+  DrawArcThree(arcthree1X, arcthree1Y)
+  DrawArcThree(arcthree2X, arcthree2Y)
+  DrawArcThree(arcthree3X, arcthree3Y)
+  DrawArcThree(arcthree4X, arcthree4Y)
+  
+  
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [97,6,6],    // Default color for 5th (layer use if x < 0)
+    [86,114,123], // Default color for 4th layer
+    [48,65,70],   // Default color for 3rd layer
+    [154,194,206],   // Default color for 2nd layer
+    [179,221,234]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [97,6,6],   // 5th layer (from outside in)
+      [234,106,60],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [97,6,6], // 2nd layer
+      [212,110,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [143,151,121],    // Default color for 5th (layer use if x < 0)
+    [115,130,118], // Default color for 4th layer
+    [77,93,83],   // Default color for 3rd layer
+    [120,134,107],   // Default color for 2nd layer
+    [143,151,121]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [143,151,121],   // 5th layer (from outside in)
+      [115,130,118],   //  4th layer
+      [77,93,83],   //  3rd layer
+      [120,134,107], // 2nd layer
+      [143,151,121]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [143,151,121],    // Default color for 5th (layer use if x < 0)
+    [115,134,120], // Default color for 4th layer
+    [77,93,83],   // Default color for 3rd layer
+    [120,134,107],   // Default color for 2nd layer
+    [143,151,121]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 0) { //edit this to change to new color
+    colors = [
+      [143,151,121],   // 5th layer (from outside in)
+      [115,130,118],   //  4th layer
+      [77,93,83],   //  3rd layer
+      [120,134,107], // 2nd layer
+      [143,151,121]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [0,30,59],    // Default color for 5th (layer use if x < 0)
+    [0,69,137], // Default color for 4th layer
+    [0,128,255],   // Default color for 3rd layer
+    [137,196,255],   // Default color for 2nd layer
+    [0,30,59]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [0,30,59],   // 5th layer (from outside in)
+      [137,196,255],   //  4th layer
+      [0,128,255],   //  3rd layer
+      [0,69,137], // 2nd layer
+      [0,30,59]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [247,10,10],    // Default color for 5th (use this if x < 0)
+    [163,6,6], // Default color for 4th layer
+    [112,16,16],   // Default color for 3rd layer
+    [143,3,3],   // Default color for 2nd layer
+    [247,10,10]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [247,10,10],   // 5th layer (from outside in)
+      [163,6,6],   //  4th layer
+      [112,16,16],   //  3rd layer
+      [143,3,3], // 2nd layer
+      [247,10,10]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [219,193,172],   // Default color for 5th
+      [162,166,164],   //  Default color for 4th
+      [54,55,54],   //  Default color for 3rd
+      [98,105,105], // Default color for 2nd
+      [179,221,234]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [212,110,29],   // 5th layer 
+      [97,6,6],   //  4th layer
+      [0,0,0],   //  3rd layer
+      [234,106,60], // 2nd layer
+      [97,6,6]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [247,10,10],    // Default color for 5th 
+    [163,6,6], // Default color for 4th layer
+    [112,16,16],   // Default color for 3rd layer
+    [143,3,3],   // Default color for 2nd layer
+    [247,10,10]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [247,10,10],   // 5th layer 
+      [163,6,6],   //  4th layer
+      [112,16,16],   //  3rd layer
+      [143,3,3], // 2nd layer
+      [247,10,10]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+
+/////////////////////////////////
+
+Wallpaper 8:
+
+//your parameter variables go here!
+
+let rectone1X = 0; //controls rect shape on 1/8 tile
+let rectone1Y = 0;
+let rectone2X = 0; //controls rect shape on 3/8 tile
+let rectone2Y = 250; 
+let rectone3X = 0; //controls rect shape on 5/8 tile
+let rectone3Y = 500; 
+let rectone4X = 0; //controls rect shape on 7/8 tile
+let rectone4Y = 750; 
+
+let rectwo1X = 250; //controls rect shape on 2/8 tile
+let rectwo1Y = 0;
+let rectwo2X = 250; //controls rect shape on 4/8 tile
+let rectwo2Y = 250; 
+let rectwo3X = 250; //controls rect shape on 6/8 tile
+let rectwo3Y = 500; 
+let rectwo4X = 250; //controls rect shape on 8/8 tile
+let rectwo4Y = 750; 
+
+let arcone1X = 250; //controls arc shape on 1/8 tile
+let arcone1Y = 250;
+let arcone2X = 250; //controls arc shape on 6/8 tile
+let arcone2Y = 750;
+let arcone3X = 250; //controls arc shape on 7/8 tile
+let arcone3Y = 1000;
+
+let arcfour1X = 250; //controls arc shape on 2/8 tile
+let arcfour1Y = 0;
+let arcfour2X = 250; //controls arc shape on 8/8 tile
+let arcfour2Y = 750;
+let arcfour3X = 250; //controls arc shape on 7/8 tile
+let arcfour3Y = 500;
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(NINE_PORTRAIT);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // quick and dirty hack to get the angles working properly 
+
+  DrawRectOne(rectone1X, rectone1Y)
+  DrawRectOne(rectone2X, rectone2Y)
+  DrawRectOne(rectone3X, rectone3Y)
+  DrawRectOne(rectone4X, rectone4Y)
+
+  DrawRectTwo(rectwo1X, rectwo1Y)
+  DrawRectTwo(rectwo2X, rectwo2Y)
+  DrawRectTwo(rectwo3X, rectwo3Y)
+  DrawRectTwo(rectwo4X, rectwo4Y)
+
+  DrawArcOne(arcone1X, arcone1Y)
+  DrawArcOne(arcone2X, arcone2Y)
+  DrawArcOne(arcone3X, arcone3Y)
+
+  DrawArcFour(arcfour1X, arcfour1Y)
+  DrawArcFour(arcfour2X, arcfour2Y)
+  DrawArcFour(arcfour3X, arcfour3Y)
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [51,29,29],    // Default color for 5th (layer use if x < 0)
+    [225,180,134], // Default color for 4th layer
+    [159,52,52],   // Default color for 3rd layer
+    [225,180,134],   // Default color for 2nd layer
+    [51,29,29]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [51,29,29],   // 5th layer (from outside in)
+      [225,180,134],   //  4th layer
+      [159,52,52],   //  3rd layer
+      [225,180,134], // 2nd layer
+      [51,29,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [51,29,29],   // 5th layer (from outside in)
+      [225,180,134],   //  4th layer
+      [159,52,52],   //  3rd layer
+      [225,180,134], // 2nd layer
+      [51,29,29]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+      [51,29,29],   // Default color for 5th
+      [225,180,134],   //  Default color for 4th
+      [159,52,52],   //  Default color for 3rd
+      [225,180,134], // Default color for 2nd
+      [51,29,29]  // Default color for 1st
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [51,29,29],   // 5th layer 
+      [225,180,134],   //  4th layer
+      [159,52,52],   //  3rd layer
+      [225,180,134], // 2nd layer
+      [51,29,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+      [51,29,29],   // Default color for 5th
+      [225,180,134],   //  Default color for 4th
+      [159,52,52],   //  Default color for 3rd
+      [225,180,134], // Default color for 2nd
+      [51,29,29]  // Default color for 1st
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [51,29,29],   // 5th layer 
+      [225,180,134],   //  4th layer
+      [159,52,52],   //  3rd layer
+      [225,180,134], // 2nd layer
+      [51,29,29]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+
+Wallpaper 9:
+
+//your parameter variables go here!
+
+let rectone1X = 0; //controls rect shape on 1/8 tile
+let rectone1Y = 0;
+let rectone2X = 250; //controls rect shape on 4/8 tile
+let rectone2Y = 250; 
+let rectone3X = 0; //controls rect shape on 5/8 tile
+let rectone3Y = 500; 
+let rectone4X = 250; //controls rect shape on 8/8 tile
+let rectone4Y = 750; 
+
+let rectthree1X = 250; //controls rect shape on 2/8 tile
+let rectthree1Y = 0;
+let rectthree2X = 0; //controls rect shape on 3/8 tile
+let rectthree2Y = 250;
+let rectthree3X = 250; //controls rect shape on 6/8 tile
+let rectthree3Y = 500;
+let rectthree4X = 0; //controls rect shape on 7/8 tile
+let rectthree4Y = 750;
+
+let arcone1X = 250; //controls arc shape on 1/8 tile
+let arcone1Y = 250;
+let arcone2X = 250; //controls arc shape on 5/8 tile
+let arcone2Y = 750;
+
+let arcthree1X = 500; //controls arc shape on 2/8 tile
+let arcthree1Y = 0;
+let arcthree2X = 500; //controls arc shape on 6/8 tile
+let arcthree2Y = 500;
+
+let arctwo1X = 250; //controls arc shape on 4/8 tile
+let arctwo1Y = 500;
+let arctwo2X = 250; //controls arc shape on 8/8 tile
+let arctwo2Y = 1000;
+
+let arcfour1X = 0; //controls arc shape on 4/8 tile
+let arcfour1Y = 250;
+let arcfour2X = 0; //controls arc shape on 7/8 tile
+let arcfour2Y = 750;
+
+
+function setup_wallpaper(pWallpaper) {
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.resolution(A3);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width = 500;
+  pWallpaper.grid_settings.cell_height = 1000;
+  pWallpaper.grid_settings.row_offset = 0; // changed this to zero
+}
+
+function wallpaper_background() {
+  background(240, 255, 240); //light honeydew green colour
+}
+
+function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
+
+
+  //changing color within function of each shape
+  //draw needed shapes here
+
+  angleMode(RADIANS) // quick and dirty hack to get the angles working properly 
+
+  DrawRectOne(rectone1X, rectone1Y);
+  DrawRectOne(rectone2X, rectone2Y);
+  DrawRectOne(rectone3X, rectone3Y);
+  DrawRectOne(rectone4X, rectone4Y);
+
+  DrawRectThree(rectthree1X, rectthree1Y)
+  DrawRectThree(rectthree2X, rectthree2Y)
+  DrawRectThree(rectthree3X, rectthree3Y)
+  DrawRectThree(rectthree4X, rectthree4Y)
+
+  DrawArcOne(arcone1X, arcone1Y);
+  DrawArcOne(arcone2X, arcone2Y);
+
+  DrawArcThree(arcthree1X, arcthree1Y);
+  DrawArcThree(arcthree2X, arcthree2Y);
+
+  DrawArcTwo(arctwo1X, arctwo1Y);
+  DrawArcTwo(arctwo2X, arctwo2Y);
+
+  DrawArcFour(arcfour1X, arcfour1Y);
+  DrawArcFour(arcfour2X, arcfour2Y);
+
+}
+
+
+function DrawArcOne(arconeX, arconeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arconeX > 0) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  arc(arconeX, arconeY, 500, 500, radians(180), radians(270));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arconeX, arconeY, 400, 400, radians(180), radians(270));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arconeX, arconeY, 300, 300, radians(180), radians(270));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arconeX, arconeY, 200, 200, radians(180), radians(270));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arconeX, arconeY, 100, 100, radians(180), radians(270));
+}
+
+function DrawArcTwo(arctwoX, arctwoY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arctwoX > 0) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]); 
+  noStroke();
+  arc(arctwoX, arctwoY, 500, 500, radians(270), radians(0));
+
+  fill(colors[1]);
+  noStroke();
+  arc(arctwoX, arctwoY, 400, 400, radians(270), radians(0));
+
+  fill(colors[2]);
+  noStroke();
+  arc(arctwoX, arctwoY, 300, 300, radians(270), radians(0));
+
+  fill(colors[3]);
+  noStroke();
+  arc(arctwoX, arctwoY, 200, 200, radians(270), radians(0));
+
+  fill(colors[4]);
+  noStroke();
+  arc(arctwoX, arctwoY, 100, 100, radians(270), radians(0));
+}
+
+function DrawArcThree(arcthreeX, arcthreeY) { //bottom left arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arcthreeX > 250) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcthreeX, arcthreeY, 500, 500, radians(90), radians(180));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 400, 400, radians(90), radians(180));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 300, 300, radians(90), radians(180));
+  fill(colors[3]); //2nd layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 200, 200, radians(90), radians(180));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcthreeX, arcthreeY, 100, 100, radians(90), radians(180));
+}
+
+function DrawArcFour(arcfourX, arcfourY) { //bottom right arc
+  let colors = [
+    [75,56,50],    // Default color for 5th (layer use if x < 0)
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (arcfourX > 0) { //edit this to change to new color
+    colors = [
+      [75,56,50],   // 5th layer (from outside in)
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+  fill(colors[0]); // 5th layer (from outside)
+  noStroke();
+  arc(arcfourX, arcfourY, 500, 500, radians(0), radians(90));
+  fill(colors[1]); //4th layer
+  noStroke();
+  arc(arcfourX, arcfourY, 400, 400, radians(0), radians(90));
+  fill(colors[2]); //3rd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 300, 300, radians(0), radians(90));
+  fill(colors[3]) //2nd layer
+  noStroke();
+  arc(arcfourX, arcfourY, 200, 200, radians(0), radians(90));
+  fill(colors[4]);  //1st layer
+  noStroke();
+  arc(arcfourX, arcfourY, 100, 100, radians(0), radians(90));
+}
+
+function DrawRectOne(rectoneX, rectoneY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectoneX > 0) { //change value to manipulate different colors of position
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectoneX, rectoneY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectoneX, rectoneY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectoneX, rectoneY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectoneX, rectoneY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectoneX, rectoneY, 50, 250);
+}
+
+function DrawRectTwo(recttwoX, recttwoY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (recttwoX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(recttwoX, recttwoY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(recttwoX, recttwoY, 200, 250);
+
+  fill(colors[2]);
+  noStroke();
+  rect(recttwoX, recttwoY, 150, 250);
+
+  fill(colors[3]);
+  noStroke();
+  rect(recttwoX, recttwoY, 100, 250);
+
+  fill(colors[4]);
+  noStroke();
+  rect(recttwoX, recttwoY, 50, 250);
+}
+
+function DrawRectThree(rectthreeX, rectthreeY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectthreeX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectthreeX, rectthreeY, 250, 50);
+}
+
+function DrawRectFour(rectfourX, rectfourY) {
+  let colors = [
+    [75,56,50],    // Default color for 5th 
+    [133,68,66], // Default color for 4th layer
+    [255,244,230],   // Default color for 3rd layer
+    [190,155,123],   // Default color for 2nd layer
+    [75,56,50]     // Default color for 1st layer
+  ];
+
+  if (rectfourX > 0) {
+    colors = [
+      [75,56,50],   // 5th layer 
+      [133,68,66],   //  4th layer
+      [255,244,230],   //  3rd layer
+      [190,155,123], // 2nd layer
+      [75,56,50]  // 1st layer
+    ];
+  }
+
+  fill(colors[0]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 250);
+
+  fill(colors[1]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 200);
+
+  fill(colors[2]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 150);
+
+  fill(colors[3]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 100);
+
+  fill(colors[4]);
+  noStroke();
+  rect(rectfourX, rectfourY, 250, 50);
+}
+
+/////////////////////////////////
